@@ -48,6 +48,10 @@ Syntax: ./scrape.sh [ env | clean | run | rebuild ]
  rebuild       Cleans directories and runs spiders on all specified targets. 
 ```
 
+## Alerts
+### macOS Only
+The `combine.py` script will notify the user when the price drops by 10% of its first scraped price. Same thing will happen if the price rises by over 5%.
+
 ## Grabbing Data
 
 ```bash
