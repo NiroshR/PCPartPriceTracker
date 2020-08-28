@@ -34,5 +34,5 @@ first = file['price'].iloc[-1]
 
 if (first * 0.9) > current:
     notify("PRICE ALERT: " + target, "10% drop in price. Now $" + str(current))
-if (first * 1.05) > current and first != current:
+if (first * 1.05) < current and first != current:
     notify("PRICE ALERT: " + target, "5% increase in price. Now $" + str(current))
