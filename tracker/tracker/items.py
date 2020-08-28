@@ -8,5 +8,6 @@ import scrapy
 
 class TrackerItem(scrapy.Item):
     # define the fields for your item here like:
-    # name = scrapy.Field()
-    pass
+    price = scrapy.Field()
+    time = scrapy.Field()
+    availability = scrapy.Field()

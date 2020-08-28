@@ -10,14 +10,14 @@ RED='\033[0;31m'
 
 # Find the root of the repo (must be somewhere inside repo for this to work)
 root=$(git rev-parse --show-toplevel)
-work_dir=$root/FashionScrapy
+work_dir=$root/tracker
 
 ###################################################################################################
 ###################################################################################################
 
 
 # Website targets currently being used.
-targets=( amazon )
+targets=( rtx2070 )
 
 
 ###################################################################################################
@@ -52,7 +52,10 @@ function errorDetect() {
 
     if grep -q "ERROR" $work_dir/logs/$1.log; then
         echo -e ${RED} Error detected parsing $i ${NC}
+        return 1
     fi
+
+    return 0
 }
 
 
@@ -64,13 +67,20 @@ function run() {
     mkdir -p $work_dir/output
     cd $work_dir 2>&1
 
+    date=$(date +%s)
+
     # Iterate through targets and scrape websites.
     for i in "${targets[@]}"
     do
-        echo -e ${CYAN}FashionScrapy: scraping $i ${NC}
+        echo -e ${CYAN}Scraping $i ${NC}
         # Crawl targets, output as json, and log the output.
-        scrapy crawl $i -o $work_dir/output/$i.json --logfile $work_dir/logs/${i}.log
-        errorDetect $i
+        scrapy crawl $i -o $work_dir/output/$i$date.csv --logfile $work_dir/logs/${i}.log
+
+        if errorDetect $i; then 
+            echo -e ${CYAN}Adding $i$date.csv to $i history${NC}
+            python3 $work_dir/combine.py ${i}
+        fi
+
     done
 }
 
@@ -95,6 +105,7 @@ function help() {
     echo -e ${MAGENTA} "env           Outlines how to setup environment." ${NC}
     echo -e ${MAGENTA} "clean         Cleans output directories and all python caches in repo." ${NC}
     echo -e ${MAGENTA} "run           Runs spiders on all specified targets." ${NC}
+    echo -e ${MAGENTA} "rebuild       Cleans directories and runs spiders on all specified targets." ${NC}
     echo
 }
 
@@ -109,23 +120,9 @@ elif [[ $1 == "clean" ]]; then
     clean_directories
     pyclean
 
-elif [[ $1 == "debug" ]]; then
-    clean_directories
-    debug
-
 elif [[ $1 == "run" ]]; then
     clean_directories
     run
-
-elif [[ $1 == "pr" ]]; then
-    clean_directories
-    pyclean
-    pull_request
-
-elif [[ $1 == "pr-all" ]]; then
-    clean_directories
-    pyclean
-    pull_request_all
 
 elif [[ $1 == "rebuild" ]]; then
     clean_directories
