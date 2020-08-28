@@ -2,7 +2,7 @@
 
 ## Description
 
-This is a python utility that can track the price of PC parts
+This is a python utility that can track the price of PC parts.
 
 ## Installation
 
@@ -27,6 +27,27 @@ deactivate
 
 ## Usage
 
+To use this scraping tool, create a spider with the specific Amazon link to scrape. For example, `rtx2070.py` scrapes Amazon for a NVIDIA graphics card. With the command `scrape.sh run`, as described below, you can scrape a site and keep a history of it in the `history/` folder. Files here aren't ignored by git so you can make a branch and save all the history online. When you run the `scrape.sh` script, it combines the historical data and the current data into one so you can view it in Excel with cool graphs.
+
+You need to add the `name` attribute of your scraper to the `targets` array in the `scrape.sh` script. These NEED to be unique, otherwise it won't work.
+
+```bash
+cd tracker
+./scrape.sh <option>
+```
+
+```bash
+This script will be used to help clean and run the spiders. 
+It can also help to create compressed log files  
+
+Syntax: ./scrape.sh [ env | clean | run | rebuild ] 
+ options: 
+ env           Outlines how to setup environment. 
+ clean         Cleans output directories and all python caches in repo. 
+ run           Runs spiders on all specified targets. 
+ rebuild       Cleans directories and runs spiders on all specified targets. 
+```
+
 ## Grabbing Data
 
 ```bash
@@ -42,3 +63,7 @@ scrapy shell '<some-website-url>' --nolog
 ## Acknowledgment
 
 - [Scrape an ecommerce dataset with Scrapy, step-by-step](https://medium.com/@tobritton/scrape-an-ecommerce-dataset-with-scrapy-from-start-to-finish-b31540df9bfa)
+
+## Author
+
+Nirosh Ratnarajah. Literally just me... and StackOverflow.

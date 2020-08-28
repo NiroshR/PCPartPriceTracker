@@ -100,7 +100,7 @@ function help() {
     echo -e ${CYAN}"This script will be used to help clean and run the spiders." ${NC}
     echo -e ${CYAN}"It can also help to create compressed log files " ${NC}
     echo
-    echo -e ${GREEN}"Syntax: ./scrapy.sh [ env | clean | debug | run | pr | pr-all | rebuild ]" ${NC}
+    echo -e ${GREEN}"Syntax: ./scrape.sh [ env | clean | run | rebuild ]" ${NC}
     echo -e ${MAGENTA} "options:" ${NC}
     echo -e ${MAGENTA} "env           Outlines how to setup environment." ${NC}
     echo -e ${MAGENTA} "clean         Cleans output directories and all python caches in repo." ${NC}
