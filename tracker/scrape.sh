@@ -17,7 +17,7 @@ work_dir=$root/tracker
 
 
 # Website targets currently being used.
-targets=( rtx2070 )
+targets=( case fans graphics memory motherboard psu ryzen storage )
 
 
 ###################################################################################################

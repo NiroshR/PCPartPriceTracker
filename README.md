@@ -3,6 +3,7 @@
 ## Description
 
 This is a python utility that can track the price of PC parts.
+This branch is for my [2020 Black Friday Wishlist](https://ca.pcpartpicker.com/list/vZ4kFG).
 
 ## Installation
 

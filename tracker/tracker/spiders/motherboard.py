@@ -4,11 +4,11 @@ from tracker.items import TrackerItem
 from datetime import datetime
 
 
-class RTX2070_FashionScrapySpider(scrapy.Spider):
+class Motherboard_FashionScrapySpider(scrapy.Spider):
     # Define the spiders characteristics.
-    name = 'rtx2070'
+    name = 'motherboard'
     allowed_domains = ['www.amazon.ca']
-    start_urls = ['https://www.amazon.ca/DisplayPort-Axial-tech-technology-Auto-Extreme-DUAL-RTX2070/dp/B087YHYQV8/ref=sr_1_5?dchild=1&keywords=rtx+2070&qid=1598570207&sr=8-5']
+    start_urls = ['https://www.amazon.ca/gp/product/B07XHH4YG4']
 
     # Need to supply a user agent so we don't get 503 error.
     user_agent = 'Mozilla/5.0 (Windows NT 6.3; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/44.0.2403.157 Safari/537.36'
